@@ -177,3 +177,14 @@ db = SQLAlchemy(app)
 from dotenv import load_dotenv
 load_dotenv()
 
+import os
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+
+# DATABASE URL を環境変数から取得（Render 推奨方法）
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+
+db = SQLAlchemy(app)
+
