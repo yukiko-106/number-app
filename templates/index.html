@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}番号取得{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <!-- Header -->
+        <div class="text-center mb-4">
+            <h1 class="display-5 fw-bold text-primary">
+                <i class="fas fa-ticket-alt me-2"></i>
+                作品番号を取得
+            </h1>
+            <p class="lead text-muted">
+                お名前を入力して、あなたの専用番号を取得してください
+            </p>
+        </div>
+
+        <!-- Main Form Card -->
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-user me-2"></i>
+                    ユーザー登録
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="name" class="form-label fw-semibold">
+                            <i class="fas fa-signature me-1"></i>
+                            あなたの名前
+                        </label>
+                        <input 
+                            type="text" 
+                            class="form-control form-control-lg" 
+                            id="name" 
+                            name="name" 
+                            placeholder="例: 田中太郎" 
+                            required
+                            autocomplete="name"
+                        >
+                        <div class="invalid-feedback">
+                            名前を入力してください。
+                        </div>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle me-1"></i>
+                            一度登録された名前には同じ番号が割り当てられます
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i>
+                            番号を取得する
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+       
+        <div class="text-center mt-4">
+            <a href="{{ url_for('admin') }}" class="btn btn-outline-secondary me-2">
+                <i class="fas fa-users me-1"></i>
+                登録ユーザー一覧
+            </a>
+            <a href="{{ url_for('reset') }}" class="btn btn-outline-danger" 
+               onclick="return confirm('本当に全てのデータをリセットしますか？この操作は元に戻せません。')">
+                <i class="fas fa-trash-alt me-1"></i>
+                データリセット
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Bootstrap form validation
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+</script>
+{% endblock %}
