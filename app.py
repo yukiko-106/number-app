@@ -29,37 +29,8 @@ with app.app_context():
     db.create_all()
     app.logger.info("Database tables created successfully")
     
-    # Migrate any existing CSV data
-    csv_file = "user_log.csv"
-    if os.path.exists(csv_file):
-        try:
-            with open(csv_file, newline='', encoding='utf-8') as f:
-                import csv as csv_module
-                reader = csv_module.reader(f)
-                migrated_count = 0
-                
-                for row in reader:
-                    if len(row) >= 2:
-                        name, number = row[0], int(row[1])
                         
-                        # Check if user already exists in database
-                        existing_user = User.query.filter_by(name=name).first()
-                        if not existing_user:
-                            user = User(name=name, number=number)
-                            db.session.add(user)
-                            migrated_count += 1
-                
-                if migrated_count > 0:
-                    db.session.commit()
-                    app.logger.info(f"Migrated {migrated_count} users from CSV to database")
-                    
-                    # Backup and remove CSV file
-                    os.rename(csv_file, f"{csv_file}.backup")
-                    app.logger.info("CSV file backed up and removed")
-                
-        except Exception as e:
-            app.logger.error(f"Error migrating CSV data: {e}")
-            db.session.rollback()
+
 
 def get_next_number():
     """Get the next available number for assignment"""
@@ -159,32 +130,3 @@ def reset():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
-
-import os
-
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI', 'sqlite:///data.db')
-
-import os
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
-app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI', 'sqlite:///db.sqlite3')
-
-db = SQLAlchemy(app)
-
-from dotenv import load_dotenv
-load_dotenv()
-
-import os
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
-app = Flask(__name__)
-
-# DATABASE URL を環境変数から取得（Render 推奨方法）
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
-
-db = SQLAlchemy(app)
-
