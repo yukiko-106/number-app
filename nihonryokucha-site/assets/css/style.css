@@ -338,7 +338,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .origin__bg { position: absolute; inset: 0; z-index: -2; background: url("../img/tea-field.jpg") center / cover; }
 .origin__inner { display: grid; justify-items: start; padding-block: clamp(100px, 13vw, 180px); }
 /* 茶畑の写真はそのまま、文字の部分だけに黒20％を敷く */
-.origin__panel { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(28px, 4vw, 64px); align-items: start; max-width: min(100%, 860px); padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 60px); background: rgba(0, 0, 0, .2); }
+.origin__panel { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(24px, 3vw, 44px); align-items: start; max-width: min(100%, 820px); padding: clamp(22px, 2.6vw, 36px) clamp(20px, 2.8vw, 40px); background: rgba(0, 0, 0, .2); }
 .origin__tate { writing-mode: vertical-rl; font-family: var(--f-display); font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.9rem); letter-spacing: .3em; line-height: 1.9; color: #fff; font-weight: 600; }
 .origin__body { display: grid; gap: 24px; max-width: 34em; min-width: 0; }
 .origin__body p { color: #fff; font-weight: 500; }
@@ -346,7 +346,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .origin .eyebrow { color: #fff; }
 .origin .text-link { color: #fff; border-bottom-color: rgba(255, 255, 255, .7); }
 .origin__tate, .origin__body p, .origin .eyebrow, .origin .text-link { text-shadow: 0 1px 2px rgba(0, 0, 0, .7), 0 2px 10px rgba(0, 0, 0, .5), 0 0 28px rgba(0, 0, 0, .35); }
-@media (max-width: 640px) { .origin__inner { padding-block: 160px 72px; } .origin__panel { grid-template-columns: minmax(0, 1fr); padding: 28px 22px; } .origin__tate { writing-mode: horizontal-tb; font-size: 1.7rem; letter-spacing: .14em; } }
+@media (max-width: 640px) { .origin__inner { padding-block: 160px 72px; } .origin__panel { grid-template-columns: minmax(0, 1fr); padding: 20px 16px; } .origin__tate { writing-mode: horizontal-tb; font-size: 1.7rem; letter-spacing: .14em; } }
 
 /* ---------- News ---------- */
 .news-list { list-style: none; border-top: 1px solid var(--line); }
