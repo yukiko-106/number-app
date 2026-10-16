@@ -125,7 +125,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .site-header.is-scrolled { --header-h: 68px; }
 .site-header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; max-width: 1440px; margin-inline: auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
 .site-logo { display: flex; align-items: center; flex-shrink: 0; }
-.site-logo img { height: 26px; width: auto; }
+.site-logo img { height: 36px; width: auto; transition: height .5s var(--ease); }
+.site-header.is-scrolled .site-logo img { height: 30px; }
+@media (max-width: 1360px) { .site-logo img { height: 30px; } }
+@media (max-width: 560px) { .site-logo img { height: 28px; } }
 .gnav { display: flex; align-items: center; gap: clamp(14px, 1.6vw, 28px); }
 .gnav__list { display: flex; list-style: none; gap: clamp(14px, 1.5vw, 26px); }
 .gnav__list a {
