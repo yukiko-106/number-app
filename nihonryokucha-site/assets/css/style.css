@@ -631,13 +631,13 @@ a.p-card:hover .p-card__media img { transform: scale(1.05); }
 .page-hero--photo .page-hero__inner { justify-items: start; }
 .page-hero--photo .page-hero__panel {
   display: grid; gap: 14px; max-width: 100%; padding: clamp(26px, 3.4vw, 44px) clamp(24px, 3.6vw, 52px);
-  background: rgba(245, 241, 231, .82); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  background: rgba(245, 241, 231, .2); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   border-left: 2px solid var(--gold); box-shadow: 0 12px 40px rgba(29, 58, 41, .18);
 }
-.page-hero--photo .page-hero__panel .eyebrow { color: var(--gold); }
+.page-hero--photo .page-hero__panel .eyebrow { color: var(--fukamidori); }
 .page-hero--photo .page-hero__panel h1 { color: var(--fukamidori); }
 .page-hero--photo .page-hero__panel p { color: var(--ink); }
-.page-hero--photo .page-hero__panel .breadcrumb { color: var(--muted); margin-top: 6px; }
+.page-hero--photo .page-hero__panel .breadcrumb { color: var(--ink); margin-top: 6px; }
 /* 写真の上でもナビが読めるよう、文字にだけ影をつける */
 .has-photo-hero .site-header:not(.is-scrolled) .gnav__list a,
 .has-photo-hero .site-header:not(.is-scrolled) .site-logo img { text-shadow: 0 1px 3px rgba(0, 0, 0, .7), 0 0 14px rgba(0, 0, 0, .45); filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .55)); }
