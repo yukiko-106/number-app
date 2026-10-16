@@ -526,11 +526,15 @@ a.p-card:hover .p-card__media img { transform: scale(1.05); }
 }
 
 /* Message (代表挨拶) */
-.message { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: clamp(32px, 6vw, 80px); align-items: start; }
-.message__body { display: grid; gap: 22px; min-width: 0; }
-.message__sign { font-family: var(--f-display); text-align: right; color: var(--fukamidori); }
-.message__sign strong { font-size: 1.4rem; letter-spacing: .2em; margin-left: 12px; }
-@media (max-width: 860px) { .message { grid-template-columns: minmax(0, 1fr); } }
+.message { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: clamp(36px, 6vw, 88px); align-items: start; }
+.message__photo { margin: 0; position: relative; isolation: isolate; }
+.message__photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 55% center; }
+.message__photo::after { content: ""; position: absolute; inset: 18px -18px -18px 18px; border: 1px solid var(--gold); z-index: -1; }
+.message__body { display: grid; gap: 22px; min-width: 0; max-width: 40em; }
+.message__body .lead { color: var(--fukamidori); font-size: clamp(1.1rem, 1rem + .5vw, 1.35rem); line-height: 1.9; }
+.message__sign { font-family: var(--f-display); text-align: right; color: var(--fukamidori); margin-top: 8px; }
+.message__sign strong { font-size: 1.4rem; letter-spacing: .2em; margin-left: 16px; font-weight: 500; }
+@media (max-width: 860px) { .message { grid-template-columns: minmax(0, 1fr); } .message__photo { max-width: 340px; } }
 
 .map-box { display: grid; gap: 14px; }
 .map-box iframe { width: 100%; aspect-ratio: 16 / 9; max-width: 100%; border: 0; filter: grayscale(.4) sepia(.15); }
