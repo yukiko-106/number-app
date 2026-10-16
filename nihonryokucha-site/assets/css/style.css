@@ -335,9 +335,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* ---------- Origin (近江茶) ---------- */
 .origin { position: relative; isolation: isolate; overflow: hidden; background: var(--sumi); }
-.origin__bg { position: absolute; inset: 0; z-index: -1; background: url("../img/tea-field.jpg") center / cover; }
+.origin__bg { position: absolute; inset: 0; z-index: -2; background: url("../img/tea-field.jpg") center / cover; }
 .origin__inner { display: grid; justify-items: start; padding-block: clamp(100px, 13vw, 180px); }
-/* 写真は暗くせず、白い文字に影だけをつけて読ませる */
+/* 茶畑の写真に黒30％を薄く重ね、白い文字を読みやすくする */
+.origin::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(0, 0, 0, .3); }
 .origin__panel { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; max-width: min(100%, 900px); }
 .origin__tate { writing-mode: vertical-rl; font-family: var(--f-display); font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.9rem); letter-spacing: .3em; line-height: 1.9; color: #fff; font-weight: 600; }
 .origin__body { display: grid; gap: 24px; max-width: 34em; min-width: 0; }
