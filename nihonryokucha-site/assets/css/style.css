@@ -334,15 +334,21 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @media (max-width: 900px) { .usage-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ---------- Origin (近江茶) ---------- */
-.origin { position: relative; isolation: isolate; overflow: hidden; color: var(--cream); background: var(--sumi); }
-.origin__bg { position: absolute; inset: 0; z-index: -2; background: url("../img/tea-field.jpg") center / cover; }
-.origin::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, rgba(10, 18, 12, .88) 0%, rgba(10, 18, 12, .6) 50%, rgba(10, 18, 12, .2) 100%); }
-.origin__inner { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; padding-block: clamp(100px, 13vw, 180px); }
-.origin__tate { writing-mode: vertical-rl; font-family: var(--f-display); font-size: clamp(1.6rem, 1.1rem + 2vw, 2.6rem); letter-spacing: .3em; line-height: 1.9; color: var(--cream); font-weight: 500; }
+.origin { position: relative; isolation: isolate; overflow: hidden; background: var(--sumi); }
+.origin__bg { position: absolute; inset: 0; z-index: -1; background: url("../img/tea-field.jpg") center / cover; }
+.origin__inner { display: grid; justify-items: start; padding-block: clamp(100px, 13vw, 180px); }
+/* 写真は暗くせず、文字は和紙色の半透明パネルに載せる */
+.origin__panel {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(28px, 4vw, 64px); align-items: start; max-width: min(100%, 860px);
+  padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 60px);
+  background: rgba(245, 241, 231, .84); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border-left: 2px solid var(--gold); box-shadow: 0 14px 44px rgba(29, 58, 41, .2);
+}
+.origin__tate { writing-mode: vertical-rl; font-family: var(--f-display); font-size: clamp(1.6rem, 1.1rem + 2vw, 2.6rem); letter-spacing: .3em; line-height: 1.9; color: var(--fukamidori); font-weight: 500; }
 .origin__body { display: grid; gap: 24px; max-width: 34em; min-width: 0; }
-.origin__body p { color: rgba(240, 234, 220, .85); }
-.origin .eyebrow { color: var(--gold-lt); }
-@media (max-width: 640px) { .origin__inner { grid-template-columns: minmax(0, 1fr); } .origin__tate { writing-mode: horizontal-tb; font-size: 1.6rem; letter-spacing: .14em; } }
+.origin__body p { color: var(--ink); }
+.origin .eyebrow { color: var(--gold); }
+@media (max-width: 640px) { .origin__inner { padding-block: 220px 40px; } .origin__panel { grid-template-columns: minmax(0, 1fr); padding: 28px 22px; } .origin__tate { writing-mode: horizontal-tb; font-size: 1.6rem; letter-spacing: .14em; } }
 
 /* ---------- News ---------- */
 .news-list { list-style: none; border-top: 1px solid var(--line); }
