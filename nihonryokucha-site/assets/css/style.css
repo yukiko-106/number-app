@@ -612,3 +612,11 @@ a.p-card:hover .p-card__media img { transform: scale(1.05); }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .js .reveal { opacity: 1; transform: none; }
 }
+
+/* 写真を主役にしたページヒーロー（会社案内） */
+.page-hero--photo { min-height: min(78svh, 720px); display: grid; align-items: end; padding-bottom: clamp(56px, 7vw, 96px); }
+.page-hero--photo .page-hero__bg { opacity: 1; transform: scale(1.04); animation: heroDrift 18s ease-out forwards; }
+.page-hero--photo::before { background: linear-gradient(90deg, rgba(10, 18, 12, .78) 0%, rgba(10, 18, 12, .4) 45%, rgba(10, 18, 12, 0) 75%), linear-gradient(0deg, rgba(10, 18, 12, .55) 0%, rgba(10, 18, 12, 0) 45%), linear-gradient(180deg, rgba(10, 18, 12, .6) 0%, rgba(10, 18, 12, 0) 22%); }
+.page-hero--photo h1, .page-hero--photo p { text-shadow: 0 2px 18px rgba(0, 0, 0, .45); }
+.page-hero--photo p { color: var(--cream); }
+@media (max-width: 640px) { .page-hero--photo { min-height: 480px; } }
