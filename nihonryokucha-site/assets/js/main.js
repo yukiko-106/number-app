@@ -72,34 +72,52 @@
   /* お問い合わせフォーム（送信先は公開時に設定） */
   var form = document.querySelector('#contact-form');
   if (form) {
+    /* ?type=sample などで種別を選んだ状態にする */
+    var m = /[?&]type=([a-z]+)/.exec(location.search);
+    if (m) {
+      var pre = form.querySelector('input[name="type"][value="' + m[1] + '"]');
+      if (pre) pre.checked = true;
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var ok = true;
-      form.querySelectorAll('.form-row').forEach(function (row) {
-        row.classList.remove('has-error');
-        var msg = row.querySelector('.error-msg');
-        if (msg) msg.remove();
-      });
+      form.querySelectorAll('.has-error').forEach(function (row) { row.classList.remove('has-error'); });
+      form.querySelectorAll('.error-msg').forEach(function (msg) { msg.remove(); });
+
       form.querySelectorAll('[required]').forEach(function (f) {
-        var bad = f.type === 'checkbox' ? !f.checked : !f.value.trim();
-        if (!bad && f.type === 'email') bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value);
-        if (bad) {
-          ok = false;
-          var row = f.closest('.form-row') || f.closest('.form-actions');
-          if (row && !row.querySelector('.error-msg')) {
-            row.classList.add('has-error');
-            var s = document.createElement('span');
-            s.className = 'error-msg';
-            s.textContent = f.type === 'email' && f.value ? 'メールアドレスの形式をご確認ください（例：info@example.co.jp）。' : (f.getAttribute('data-label') || 'この項目') + 'を入力してください。';
-            (f.parentElement.classList.contains('choices') ? f.parentElement.parentElement : f.parentElement).appendChild(s);
-          }
+        var bad, text;
+        if (f.type === 'radio') {
+          bad = !form.querySelector('input[name="' + f.name + '"]:checked');
+          text = (f.getAttribute('data-label') || 'この項目') + 'を選択してください。';
+        } else if (f.type === 'checkbox') {
+          bad = !f.checked;
+          text = (f.getAttribute('data-label') || 'この項目') + 'にチェックを入れてください。';
+        } else if (f.type === 'email' && f.value.trim()) {
+          bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim());
+          text = 'メールアドレスの形式をご確認ください（例：info@example.co.jp）。';
+        } else {
+          bad = !f.value.trim();
+          text = (f.getAttribute('data-label') || 'この項目') + 'を入力してください。';
         }
+        if (!bad) return;
+        ok = false;
+        var row = f.closest('.form-row') || f.closest('.form-actions');
+        if (!row || row.querySelector('.error-msg')) return;
+        row.classList.add('has-error');
+        var s = document.createElement('span');
+        s.className = 'error-msg';
+        s.setAttribute('role', 'alert');
+        s.textContent = text;
+        var host = f.closest('.choices') ? f.closest('.choices').parentElement : (f.type === 'checkbox' ? f.closest('label').parentElement : f.parentElement);
+        host.appendChild(s);
       });
       if (!ok) {
         var first = form.querySelector('.has-error input, .has-error select, .has-error textarea');
         if (first) first.focus();
         return;
       }
+      /* 送信先は公開時に設定（現在は完了表示のみ） */
       var done = document.querySelector('#form-done');
       form.hidden = true;
       if (done) { done.hidden = false; done.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
