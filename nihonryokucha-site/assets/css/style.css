@@ -641,3 +641,7 @@ a.p-card:hover .p-card__media img { transform: scale(1.05); }
 .has-photo-hero .site-header:not(.is-scrolled) .gnav__list a { filter: none; }
 .has-photo-hero .site-header:not(.is-scrolled) .gnav__list a small { color: var(--cream); }
 @media (max-width: 640px) { .page-hero--photo { min-height: 600px; padding-bottom: 32px; } .page-hero--photo .page-hero__panel { padding: 20px 16px; } }
+
+/* スマホだけで改行する <br class="sp-only"> */
+.sp-only { display: none; }
+@media (max-width: 600px) { .sp-only { display: inline; } }
